@@ -1,7 +1,7 @@
 module.exports = {
   content: [
-    "./src/**/*.{html,js}", // Chemin vers vos fichiers HTML ou JS
-    "./*.html", // Optionnel pour les fichiers HTML à la racine
+    "./main.html", // Inclus les fichiers HTML à la racine
+    "./src/**/*.{html,js}" // Tous les fichiers dans "src"
   ],
   theme: {
     extend: {},

@@ -4,12 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projet Tailwind CSS</title>
-  <link href="./dist/output.css" rel="stylesheet">
+  <link href="/dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles.css">
 </head>
 <body class="bg-gray-100 text-gray-900">
-  <div class="container mx-auto p-4">
-    <h1 class="text-4xl font-bold text-center">Bienvenue sur Tailwind CSS</h1>
-    <p class="mt-4 text-center">Votre projet est prêt à utiliser Tailwind !</p>
-  </div>
+  
+<nav class="p-12 bg-red-400 flex justify-between items-center text-white ">
+    <p class="text-3xl text-white">Food<b class="text-green-300">Me</b> </p>
+    <a href="" class="bg-green-500 p-4 rounded-full font-bold">connexion</a>
+</nav>
+
+<div class="grid grid-cols-2 ">
+
+    <div class="border py-24 ">
+        <img src="https://glovoapp.com/images/landing/burger-full-landing.png" alt="">
+    </div>
+
+    <div class="flex items-center justify-center px-24">
+        <p class="font-bold text-black text-4xl font-mono ">N°1 des services de restauration</p>
+    </div>
+</div>
+
+
+
+
+
 </body>
 </html>
