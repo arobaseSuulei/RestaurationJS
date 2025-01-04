@@ -3,29 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projet Tailwind CSS</title>
+  <title>RESTAURANT</title>
   <link href="/dist/output.css" rel="stylesheet">
   <link rel="stylesheet" href="src/styles.css">
 </head>
-<body class="bg-gray-100 text-gray-900">
-  
-<nav class="p-12 bg-red-400 flex justify-between items-center text-white ">
-    <p class="text-3xl text-white">Food<b class="text-green-300">Me</b> </p>
-    <a href="" class="bg-green-500 p-4 rounded-full font-bold">connexion</a>
-</nav>
+<body >
+    <nav>
+        <ul>
+            <li><a href="   ">Accueil</a></li>
+            <li><a href="   ">Paramètres</a>
+                <ul>
+                    <li><a href="#">Ajouter Menu</a></li>
+                    <li><a href="#">Modifier Menu</a></li>
+                    <li><a href="#">Supprimer Menu</a></li>
+                    <li><a href="#">Afficher Menu</a></li>
+                </ul>
+            </li>
+            <li><a href="   ">Dashboard</a></li>
+        </ul>
+    </nav>
+ 
+    <form id="adminForm" onsubmit="return validateForm()">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required><br><br>
 
-<div class="grid grid-cols-2 ">
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required><br><br>
 
-    <div class="border py-24 ">
-        <img src="https://glovoapp.com/images/landing/burger-full-landing.png" alt="">
-    </div>
+        <label for="id">Identifiant :</label>
+        <input type="text" id="id" name="id" required pattern="[A-Za-z]{3}[0-9]{3}" title="L'identifiant doit être de la forme 'ABC123'"><br><br>
 
-    <div class="flex items-center justify-center px-24">
-        <p class="font-bold text-black text-4xl font-mono ">N°1 des services de restauration</p>
-    </div>
-</div>
+        <label for="tel">Téléphone :</label>
+        <input type="tel" id="tel" name="tel" required pattern="[0-9]{10}" title="Le numéro de téléphone doit contenir 10 chiffres"><br><br>
 
+        <input type="submit" value="Valider">
+    </form>
 
+  <script src="script.js"></script>
 
 
 
