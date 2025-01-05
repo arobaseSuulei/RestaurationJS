@@ -6,48 +6,28 @@
   <title>Afficher Menu</title>
   <link href="/dist/output.css" rel="stylesheet">
   <link rel="stylesheet" href="src/styles.css">
-  <script src="AllMenu.js" defer></script>
+  <script src="AllMenu.js" ></script>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="main.html">Accueil</a></li>
-      <li><a href="ajouterMenu.html">Ajouter Menu</a></li>
-      <li><a href="modifierMenu.html">Modifier Menu</a></li>
-      <li><a href="supprimerMenu.html">Supprimer Menu</a></li>
-      <li><a href="afficherMenu.html">Afficher Menu</a></li>
-    </ul>
+  
+    <div class="">
+      <a href="main.html">Accueil</a>
+      <a href="ajouterMenu.html">Ajouter Menu</a>
+      <a href="modifierMenu.html">Modifier Menu</a>
+      <a href="supprimerMenu.html">Supprimer Menu</a>
+      <a href="afficherMenu.html">Afficher Menu</a>
+    
   </nav>
 
-  <h1>Liste des menus</h1>
-  <div id="menuContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <!-- Les menus seront affichés ici -->
+  <h1 >Liste des menus</h1>
+  <div id="divAjout" >
+    <button onclick="displayMenus()">Afficher</button>
+    <p >menu1</p>
+    <p>menu2</p>
+    <p>menu3</p>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const menus = JSON.parse(localStorage.getItem('menus')) || [];
-      const menuContainer = document.getElementById('menuContainer');
-
-      menus.forEach(menu => {
-        const menuCard = document.createElement('div');
-        menuCard.classList.add('border', 'p-4', 'rounded', 'shadow');
-
-        menuCard.innerHTML = `
-          <img src="${menu.image}" alt="${menu.nom}" class="w-full h-48 object-cover rounded">
-          <h2 class="text-xl font-bold mt-2">${menu.nom}</h2>
-          <p class="text-green-500 font-bold">${menu.prix} €</p>
-          <button class="bg-blue-500 text-white p-2 rounded mt-2" onclick="viewDetails('${menu.nom}')">Voir Détails</button>
-        `;
-
-        menuContainer.appendChild(menuCard);
-      });
-    });
-
-    function viewDetails(nom) {
-      window.location.href = `detailsMenu.html?nom=${nom}`;
-    }
-  </script>
+  
 </body>
 </html>
      

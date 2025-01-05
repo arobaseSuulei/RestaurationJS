@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    "./main.html", // Inclus les fichiers HTML à la racine
+    "./main.html","./afficherMenu.html", // Inclus les fichiers HTML à la racine
     "./src/**/*.{html,js}" // Tous les fichiers dans "src"
   ],
   theme: {
