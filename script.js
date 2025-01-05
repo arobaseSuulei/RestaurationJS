@@ -31,38 +31,3 @@ function validateForm() {
 
 
 
-/*function searchMenu() {
-            // Code pour rechercher le plat à modifier
-            // Une fois le plat trouvé, afficher les détails et le formulaire de modification
-            document.getElementById('menuDetails').style.display = 'block';
-        }
-
-        const editMenuForm = document.getElementById('editMenuForm');
-
-        editMenuForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            const nomMenu = document.getElementById('nomMenu').value;
-            const description = document.getElementById('description').value;
-            const prix = document.getElementById('prix').value;
-
-            // Envoi de la requête à l'API pour enregistrer les modifications du menu
-            // Assurez-vous de remplacer l'URL de l'API et les détails de l'API par les vôtres
-            fetch('https://api-restauration.com/menus/id', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ nom: nomMenu, description: description, prix: prix }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Modifications enregistrées avec succès !');
-                // Rediriger vers la page Afficher Menu
-                window.location.href = 'afficherMenu.html';
-            })
-            .catch(error => {
-                console.error('Erreur lors de l\'enregistrement des modifications :', error);
-            });
-        });
-        */

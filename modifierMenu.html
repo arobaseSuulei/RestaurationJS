@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier Menu</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier Menu</title>
+  <link href="/dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles.css">
 </head>
-
 <body>
-    <h1>Modifier un menu</h1>
-    <input type="text" id="searchMenu" placeholder="Rechercher un plat à modifier...">
-    <button onclick="searchMenu()">Rechercher</button>
+  <nav>
+    <ul>
+      <li><a href="main.html">Accueil</a></li>
+      <li><a href="ajouterMenu.html">Ajouter Menu</a></li>
+      <li><a href="modifierMenu.html">Modifier Menu</a></li>
+      <li><a href="supprimerMenu.html">Supprimer Menu</a></li>
+      <li><a href="afficherMenu.html">Afficher Menu</a></li>
+    </ul>
+  </nav>
 
-    <div id="menuDetails" style="display: none;">
-        <h2>Détails du menu</h2>
-        <form id="editMenuForm">
-            <label for="nomMenu">Nom du menu :</label>
-            <input type="text" id="nomMenu" name="nomMenu" required><br><br>
+  <h1>Modifier un menu</h1>
+  <input type="text" id="searchMenu" placeholder="Rechercher un plat à modifier...">
+  <button onclick="searchMenu()">Rechercher</button>
 
-            <label for="description">Description :</label>
-            <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+  <div id="menuDetails" style="display: none;">
+    <h2>Détails du menu</h2>
+    <form id="editMenuForm">
+      <label for="nomMenu">Nom du menu :</label>
+      <input type="text" id="nomMenu" name="nomMenu" required><br><br>
 
-            <label for="prix">Prix :</label>
-            <input type="number" id="prix" name="prix" required><br><br>
+      <label for="description">Description :</label>
+      <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
 
-            <button type="submit">Enregistrer les modifications</button>
-        </form>
-    </div>
+      <label for="prix">Prix :</label>
+      <input type="number" id="prix" name="prix" required><br><br>
 
-    <script src="script.js"></script>
+      <button type="submit">Enregistrer les modifications</button>
+    </form>
+  </div>
+
+  <script>
+    function searchMenu() {
+      const nom = document.getElementById('searchMenu').value;
+      const menus = JSON.parse(localStorage.getItem('menus')) || [];
+      const menu = menus.find(menu => menu.nom.toLowerCase() === nom.toLowerCase());
+
+      if (menu) {
+        document.getElementById('menuDetails').style.display = 'block';
+        document.getElementById('nomMenu').value = menu.nom;
+        document.getElementById('description').value = menu.description;
+        document.getElementById('prix').value = menu.prix;
+        document.getElementById('editMenuForm').onsubmit = function(event) {
+          event.preventDefault();
+          menu.nom = document.getElementById('nomMenu').value;
+          menu.description = document.getElementById('description').value;
+          menu.prix = document.getElementById('prix').value;
+          localStorage.setItem('menus', JSON.stringify(menus));
+          alert('Menu modifié avec succès!');
+          window.location.href = 'afficherMenu.html';
+        };
+      } else {
+        alert('Menu non trouvé');
+      }
+    }
+  </script>
+</body>
+</html>

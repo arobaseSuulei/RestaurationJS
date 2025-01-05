@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Afficher Menu</title>
+  <title>Détails du Menu</title>
   <link href="/dist/output.css" rel="stylesheet">
   <link rel="stylesheet" href="src/styles.css">
-  <script src="AllMenu.js" defer></script>
 </head>
 <body>
   <nav>
@@ -19,35 +18,31 @@
     </ul>
   </nav>
 
-  <h1>Liste des menus</h1>
-  <div id="menuContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <!-- Les menus seront affichés ici -->
+  <h1>Détails du Menu</h1>
+  <div id="menuDetails" class="p-4 border rounded shadow">
+    <!-- Les détails du menu seront affichés ici -->
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const nom = urlParams.get('nom');
       const menus = JSON.parse(localStorage.getItem('menus')) || [];
-      const menuContainer = document.getElementById('menuContainer');
+      const menu = menus.find(menu => menu.nom === nom);
 
-      menus.forEach(menu => {
-        const menuCard = document.createElement('div');
-        menuCard.classList.add('border', 'p-4', 'rounded', 'shadow');
-
-        menuCard.innerHTML = `
+      if (menu) {
+        const menuDetails = document.getElementById('menuDetails');
+        menuDetails.innerHTML = `
           <img src="${menu.image}" alt="${menu.nom}" class="w-full h-48 object-cover rounded">
           <h2 class="text-xl font-bold mt-2">${menu.nom}</h2>
+          <p class="text-gray-700">${menu.description}</p>
           <p class="text-green-500 font-bold">${menu.prix} €</p>
-          <button class="bg-blue-500 text-white p-2 rounded mt-2" onclick="viewDetails('${menu.nom}')">Voir Détails</button>
         `;
-
-        menuContainer.appendChild(menuCard);
-      });
+      } else {
+        alert('Menu non trouvé');
+        window.location.href = 'afficherMenu.html';
+      }
     });
-
-    function viewDetails(nom) {
-      window.location.href = `detailsMenu.html?nom=${nom}`;
-    }
   </script>
 </body>
 </html>
-     

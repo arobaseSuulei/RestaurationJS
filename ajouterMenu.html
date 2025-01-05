@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter Menu</title>
+  <link href="/dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles.css">
+  <script src="AllMenu.js" defer></script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="main.html">Accueil</a></li>
+      <li><a href="ajouterMenu.html">Ajouter Menu</a></li>
+      <li><a href="modifierMenu.html">Modifier Menu</a></li>
+      <li><a href="supprimerMenu.html">Supprimer Menu</a></li>
+      <li><a href="afficherMenu.html">Afficher Menu</a></li>
+    </ul>
+  </nav>
+
+  <h1>Ajouter un nouveau menu</h1>
+  <form id="addMenuForm">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required><br><br>
+    <button type="submit">Enregistrer</button>
+  </form>
+
+  <script>
+    document.getElementById('addMenuForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const nom = document.getElementById('nom').value;
+
+      let request = `https://www.themealdb.com/api/json/v1/1/search.php?s=${nom}`;
+      let data = await fetch(request);
+      let menus = await data.json();
+
+      if (menus.meals && menus.meals.length > 0) {
+        const menu = {
+          nom: menus.meals[0].strMeal,
+          description: menus.meals[0].strInstructions,
+          prix: Math.floor(Math.random() * 100) + 10, // Prix aléatoire pour l'exemple
+          image: menus.meals[0].strMealThumb
+        };
+        let storedMenus = JSON.parse(localStorage.getItem('menus')) || [];
+        storedMenus.push(menu);
+        localStorage.setItem('menus', JSON.stringify(storedMenus));
+
+        alert('Menu ajouté avec succès!');
+        window.location.href = 'afficherMenu.html';
+      } else {
+        alert('Menu non trouvé');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supprimer Menu</title>
+  <link href="/dist/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="main.html">Accueil</a></li>
+      <li><a href="ajouterMenu.html">Ajouter Menu</a></li>
+      <li><a href="modifierMenu.html">Modifier Menu</a></li>
+      <li><a href="supprimerMenu.html">Supprimer Menu</a></li>
+      <li><a href="afficherMenu.html">Afficher Menu</a></li>
+    </ul>
+  </nav>
+
+  <h1>Supprimer un menu</h1>
+  <input type="text" id="searchMenu" placeholder="Rechercher un plat à supprimer...">
+  <button onclick="searchMenu()">Rechercher</button>
+
+  <div id="menuDetails" style="display: none;">
+    <h2>Détails du menu</h2>
+    <p id="menuName"></p>
+    <p id="menuDescription"></p>
+    <p id="menuPrice"></p>
+    <button onclick="deleteMenu()">Supprimer</button>
+  </div>
+
+  <script>
+    let selectedMenu;
+
+    function searchMenu() {
+      const nom = document.getElementById('searchMenu').value;
+      const menus = JSON.parse(localStorage.getItem('menus')) || [];
+      const menu = menus.find(menu => menu.nom.toLowerCase() === nom.toLowerCase());
+
+      if (menu) {
+        selectedMenu = menu;
+        document.getElementById('menuDetails').style.display = 'block';
+        document.getElementById('menuName').textContent = `Nom: ${menu.nom}`;
+        document.getElementById('menuDescription').textContent = `Description: ${menu.description}`;
+        document.getElementById('menuPrice').textContent = `Prix: ${menu.prix} €`;
+      } else {
+        alert('Menu non trouvé');
+      }
+    }
+
+    function deleteMenu() {
+      if (confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')) {
+        let menus = JSON.parse(localStorage.getItem('menus')) || [];
+        menus = menus.filter(menu => menu.nom !== selectedMenu.nom);
+        localStorage.setItem('menus', JSON.stringify(menus));
+        alert('Menu supprimé avec succès!');
+        window.location.href = 'afficherMenu.html';
+      }
+    }
+  </script>
+</body>
+</html>
