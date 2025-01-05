@@ -1,19 +1,36 @@
-// 
+async function getMenu() {
 
-const response = async()=>{
 
-    let request = `https://www.themealdb.com/api/json/v1/1/search.php?s=a`
+    let nameMenu = document.getElementById("nameMenu")
+    let name = nameMenu.value
+    console.log(name)
 
-    // fetching data
-    let data = await fetch(request)
+    const request = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
 
-    // convertir la reponse en json
-    let menus = await data.json()
+    try{
+        // recup données
+        const response = await fetch(request)
 
-    //
-    console.log(menus.meals[0])
+        // conversion du retour en json
+
+        const menus=await response.json()
+
+        console.log(menus.meals[0])
+        console.log(menus.meals[0].strMeal)
+    }
+    catch{
+        console.log("error")
+    }
+
+
+
 }
 
-response()
+
+
+
+
+
+
 
 
